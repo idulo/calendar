@@ -1,9 +1,9 @@
 .emptyCell {
   background-color: #dfdfdf;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 
 .dayCell {
   background-color: #e9eb87;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }

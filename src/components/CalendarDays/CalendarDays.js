@@ -3,7 +3,6 @@ import moment from "moment";
 
 import DaysOfWeek from "./DaysOfWeek";
 import CalendarTable from "./CalendarTable";
-
 import STYLES from "./CalendarDays.module.css";
 
 class CalendarDays extends React.Component {

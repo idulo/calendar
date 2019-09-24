@@ -3,13 +3,18 @@ import moment from "moment";
 
 import MonthPicker from "../MonthPicker";
 import CalendarDays from "../CalendarDays";
+import ReminderForm from "../ReminderForm";
+import ReminderEntry from "../ReminderEntry";
 import STYLES from "./Calendar.module.css";
 
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: moment()
+      date: moment(),
+      showReminderWindow: false,
+      selectedDay: 0,
+      reminders: []
     };
   }
 
@@ -25,12 +30,23 @@ class Calendar extends React.Component {
       date: moment(this.state.date).add(1, "months")
     });
 
-  firstDayOfMonth = () =>
-    moment(this.state.date)
-      .startOf("month")
-      .weekday();
+  toggleReminder = day =>
+    this.setState({
+      showReminderWindow: !this.state.showReminderWindow,
+      selectedDay: day
+    });
 
-  daysInMonth = () => moment(this.state.date).daysInMonth();
+  addReminder = reminderText => {
+    this.state.reminders.push({
+      month: this.state.date.month(),
+      day: this.state.selectedDay,
+      text: reminderText
+    });
+    this.toggleReminder();
+
+    console.log("Reminders list: ");
+    console.log(this.state.reminders);
+  };
 
   render() {
     return (
@@ -42,10 +58,22 @@ class Calendar extends React.Component {
             month={this.currentMonthAndYear()}
           />
           <CalendarDays
-            daysInMonth={this.daysInMonth}
-            firstDayOfMonth={this.firstDayOfMonth}
+            date={this.state.date}
+            addReminder={this.addReminder}
             toggleReminder={this.toggleReminder}
           />
+        </div>
+        <div className={STYLES.sidepanel}>
+          {this.state.showReminderWindow ? (
+            <ReminderForm
+              addReminder={this.addReminder}
+              selectedDay={this.state.selectedDay}
+              selectedMonth={this.state.date.month()}
+            />
+          ) : null}
+          {this.state.reminders.map(reminder => (
+            <ReminderEntry reminder={reminder} />
+          ))}
         </div>
       </div>
     );

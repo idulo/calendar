@@ -2,37 +2,39 @@ import React from "react";
 
 import STYLES from "./CalendarTable.module.css";
 
-const CalendarCell = ({ className, day }) => (
-  <td className={className}>{day}</td>
+const EmptyCell = () => <td className={STYLES.emptyCell}></td>;
+
+const DayCell = ({ day, toggleReminder }) => (
+  <td className={STYLES.dayCell} onClick={() => toggleReminder(day)}>
+    {day}
+  </td>
 );
 
-const CalendarRow = ({ cells }) => <tr>{cells}</tr>;
+const CalendarRow = ({ content }) => <tr>{content}</tr>;
 
-const CalendarTable = ({ daysInMonth, firstDayOfMonth }) => {
+const CalendarTable = ({ daysInMonth, firstDayOfMonth, toggleReminder }) => {
   let calendarRow = [];
   let calendarDays = [];
   let day = 1;
 
-  if (firstDayOfMonth > 0) {
-    for (let emptyDay = 1; emptyDay <= firstDayOfMonth; emptyDay++) {
-      calendarRow.push(<CalendarCell className={STYLES.emptyCell} />);
-    }
+  for (let emptyDay = 1; emptyDay <= firstDayOfMonth; emptyDay++) {
+    calendarRow.push(<EmptyCell key={`empty-${emptyDay}`} />);
   }
 
   while (day <= daysInMonth) {
     if (calendarRow.length === 7) {
       calendarDays.push(
         <CalendarRow
-          rowCount={`row-${calendarDays.length + 1}`}
-          cells={calendarRow}
+          key={`row-${calendarDays.length + 1}`}
+          content={calendarRow}
         />
       );
       calendarRow = [];
     } else {
       calendarRow.push(
-        <CalendarCell
-          className={STYLES.dayCell}
+        <DayCell
           key={`cell-${day}`}
+          toggleReminder={toggleReminder}
           day={day}
         />
       );
@@ -42,7 +44,10 @@ const CalendarTable = ({ daysInMonth, firstDayOfMonth }) => {
 
   if (calendarRow.length > 0) {
     calendarDays.push(
-      <CalendarRow key={`row-${calendarDays.length + 1}`} cells={calendarRow} />
+      <CalendarRow
+        key={`row-${calendarDays.length + 1}`}
+        content={calendarRow}
+      />
     );
   }
 
