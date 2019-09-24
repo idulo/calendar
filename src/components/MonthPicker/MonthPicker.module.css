@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  flex-wrap: nowrap;
   justify-content: space-between;
   font-size: x-large;
   border-bottom: 3px solid #7b5e7b;

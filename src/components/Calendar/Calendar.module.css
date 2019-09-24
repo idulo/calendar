@@ -7,8 +7,6 @@
   flex-direction: column;
   font-size: large;
   flex-grow: 1;
-  margin-left: 3rem;
-  margin-top: 3rem;
 }
 
 .calendarContainer {
@@ -28,7 +26,7 @@
   }
 }
 
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1500px) {
   .container {
     margin: 3rem 30rem;
   }
