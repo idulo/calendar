@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReminderList renders correctly a list of reminders 1`] = `
+<div
+  className="container"
+>
+  On
+   
+  1st February
+   
+  you should: 
+  Merry Christmas
+</div>
+`;

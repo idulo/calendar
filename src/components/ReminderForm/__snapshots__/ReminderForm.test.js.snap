@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReminderForm renders correctly with selected day and month 1`] = `
+<div
+  className="container"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <label>
+      Create reminder for
+       
+      NaNth undefined
+      <input
+        id="reminder"
+        name="reminder"
+        onChange={[Function]}
+        placeholder="What is the reminder?"
+        required={true}
+        type="text"
+        value=""
+      />
+    </label>
+    <input
+      className="reminderForm"
+      type="submit"
+      value="Save reminder"
+    />
+  </form>
+</div>
+`;
