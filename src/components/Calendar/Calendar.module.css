@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  margin: 5rem 15rem;
+}
+
+.calendarContainer {
+  display: flex;
+  flex-direction: column;
+  border: 8px double #7b5e7b;
+  border-radius: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    margin: 3rem 6rem;
+  }
+}
